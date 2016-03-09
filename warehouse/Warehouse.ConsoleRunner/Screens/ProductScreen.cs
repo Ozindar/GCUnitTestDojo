@@ -2,11 +2,8 @@
 {
     using System;
     using System.Collections;
-    using FluentNHibernate.Conventions;
-    using FluentNHibernate.Utils;
     using Models;
     using NHibernate;
-    using NHibernate.Linq;
     using NHibernate.Util;
 
     public class ProductScreen : ScreenBase
@@ -22,7 +19,7 @@
             var products = Session.QueryOver<Product>().List();
 
             if (!products.Any())
-            {   
+            {
                 Console.WriteLine("No products");
                 return;
             }
@@ -81,7 +78,7 @@
             Console.Clear();
             Console.WriteLine("Choose a product");
 
-            int i = 0;
+            var i = 0;
             foreach (var product in Session.QueryOver<Product>().OrderBy(p => p.Name).Asc.List())
             {
                 prods.Add(++i, product);
