@@ -52,9 +52,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AisleMap.cs" />
+    <Compile Include="BuildingMap.cs" />
     <Compile Include="ProductMap.cs" />
     <Compile Include="ModelBaseMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RackMap.cs" />
+    <Compile Include="ShelveMap.cs" />
+    <Compile Include="StoredProductMap.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

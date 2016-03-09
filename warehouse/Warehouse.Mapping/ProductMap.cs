@@ -7,8 +7,8 @@
     {
         public ProductMap()
         {
-            Map(x => x.Name);
             Map(x => x.ProductType).CustomType<ProductType>();
+            HasMany(x => x.StoredProducts);
         }
     }
 }

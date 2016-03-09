@@ -1,5 +1,6 @@
 ﻿namespace Warehouse.ConsoleRunner
 {
+    using System;
     using FluentNHibernate.Cfg;
     using FluentNHibernate.Cfg.Db;
     using Mapping;

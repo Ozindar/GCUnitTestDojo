@@ -17,6 +17,8 @@
             get { return guid; }
         }
 
+        public virtual string Name { get; set; }
+
         #region Implementation of IEquatable<ModelBase>
         /// <summary>
         ///     Equalses the specified model base.

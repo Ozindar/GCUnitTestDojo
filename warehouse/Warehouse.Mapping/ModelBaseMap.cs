@@ -9,6 +9,7 @@
         {
             Id(x => x.Id);
             Map(x => x.Guid);
+            Map(x => x.Name);
         }
     }
 }
