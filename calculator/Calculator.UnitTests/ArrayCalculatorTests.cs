@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
-using Xunit.Extensions;
 
 namespace Calculator.UnitTests
 {
@@ -21,51 +17,6 @@ namespace Calculator.UnitTests
 
             // Assert
             Assert.Throws<ArgumentNullException>(() => act());
-        }
-
-        [Fact]
-        public void Add_WithOneValue_ReturnsSameValue()
-        {
-            // Arrange
-            ArrayCalculator sut = new ArrayCalculator();
-            int[] input = {42};
-            int expected = 42;
-            
-            // Act
-            int actual = sut.Add(input);
-
-            // Assert
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void Add_WithTwoValue_ReturnsAddedValues()
-        {
-            // Arrange
-            ArrayCalculator sut = new ArrayCalculator();
-            int[] input = {42, 8};
-            int expected = 50;
-            
-            // Act
-            int actual = sut.Add(input);
-
-            // Assert
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void Add_WithEmptyArray_Returns0()
-        {
-            // Arrange
-            ArrayCalculator sut = new ArrayCalculator();
-            int[] input = {};
-            int expected = 0;
-
-            // Act
-            int actual = sut.Add(input);
-
-            // Assert
-            Assert.Equal(expected, actual);
         }
 
         [Fact]
@@ -102,6 +53,9 @@ namespace Calculator.UnitTests
             {
                 return new[]
                 {
+                    // Input array - Expected value
+                    new object[] {new int[] {} , 0},
+                    new object[] {new int[] {42} , 42},
                     new object[] {new int[] {1,2} , 3},
                     new object[] {new int[] {43,33,5423,2} , 5501},
                     new object[] {new int[] { 43, 23, 121, 3, 5, 643, 43, 4321, 3}, 5205}
