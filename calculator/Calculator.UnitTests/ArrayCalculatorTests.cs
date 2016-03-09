@@ -6,21 +6,15 @@
 
     public class ArrayCalculatorTests
     {
-        public static IEnumerable<object[]> InputData
+        public static IEnumerable<object[]> InputData => new[]
         {
-            get
-            {
-                return new[]
-                {
-                    // Input array - Expected value
-                    new object[] {new int[] {}, 0},
-                    new object[] {new[] {42}, 42},
-                    new object[] {new[] {1, 2}, 3},
-                    new object[] {new[] {43, 33, 5423, 2}, 5501},
-                    new object[] {new[] {43, 23, 121, 3, 5, 643, -43, 4321, 3}, 5119}
-                };
-            }
-        }
+            // Input array - Expected value
+            new object[] {new int[] {}, 0},
+            new object[] {new[] {42}, 42},
+            new object[] {new[] {1, 2}, 3},
+            new object[] {new[] {43, 33, 5423, 2}, 5501},
+            new object[] {new[] {43, 23, 121, 3, 5, 643, -43, 4321, 3}, 5119}
+        };
 
         [Fact]
         public void Add_WithNullParameter_ThrowsArgumentNullException()
@@ -37,7 +31,7 @@
         }
 
         [Fact]
-        public void Add_WithMaxIntPlus1_ThrowsException()
+        public void Add_WithMaxIntPlus1_ThrowsOverflowException()
         {
             // Arrange
             var sut = new ArrayCalculator();
