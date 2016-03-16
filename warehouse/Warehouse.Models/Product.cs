@@ -40,7 +40,7 @@
             WeatherService.GlobalWeatherSoap weatherClient = new GlobalWeatherSoapClient("GlobalWeatherSoap");
             CurrentWeather currentWheather = CurrentWeather.ParseXml(weatherClient.GetWeather("rotterdam", "netherlands"));
 
-            var x = currentWheather.TemperatureCelcius();
+            var x = currentWheather.GetTemperatureInCelcius();
         }
     }
 }
