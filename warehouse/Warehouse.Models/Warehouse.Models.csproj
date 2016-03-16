@@ -49,7 +49,7 @@
     <Compile Include="Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rack.cs" />
-    <Compile Include="Service References\WheatherService\Reference.cs">
+    <Compile Include="Service References\WeatherService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -61,25 +61,25 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="ClassDiagram.cd" />
-    <None Include="Service References\WheatherService\globalweather.wsdl" />
+    <None Include="Service References\WeatherService\globalweather.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\WheatherService\" />
+    <WCFMetadataStorage Include="Service References\WeatherService\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\WheatherService\globalweather.disco" />
+    <None Include="Service References\WeatherService\globalweather.disco" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\WheatherService\configuration91.svcinfo" />
+    <None Include="Service References\WeatherService\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\WheatherService\configuration.svcinfo" />
+    <None Include="Service References\WeatherService\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\WheatherService\Reference.svcmap">
+    <None Include="Service References\WeatherService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

@@ -1,6 +1,4 @@
-﻿using Warehouse.Models.WheatherService;
-
-namespace Warehouse.Models
+﻿namespace Warehouse.Models
 {
     public class StoredProduct : ModelBase
     {

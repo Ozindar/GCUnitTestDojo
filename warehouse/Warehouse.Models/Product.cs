@@ -1,17 +1,16 @@
-﻿using System.Security.Policy;
-using Warehouse.Models.WheatherService;
-
-namespace Warehouse.Models
+﻿namespace Warehouse.Models
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using Enums;
+    using WeatherService;
 
     public class Product : ModelBase
     {
         public virtual ProductType ProductType { get; set; }
         public virtual IList<StoredProduct> StoredProducts { get; protected set; } = new List<StoredProduct>();
+        public virtual decimal Weight { get; set; }
 
         public virtual int AmountAvailable 
         {
@@ -38,7 +37,7 @@ namespace Warehouse.Models
 
         public Product()
         {
-            WheatherService.GlobalWeatherSoap weatherClient = new GlobalWeatherSoapClient("GlobalWeatherSoap");
+            WeatherService.GlobalWeatherSoap weatherClient = new GlobalWeatherSoapClient("GlobalWeatherSoap");
             CurrentWeather currentWheather = CurrentWeather.ParseXml(weatherClient.GetWeather("rotterdam", "netherlands"));
 
             var x = currentWheather.TemperatureCelcius();

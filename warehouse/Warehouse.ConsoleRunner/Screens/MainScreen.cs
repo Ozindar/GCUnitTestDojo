@@ -9,16 +9,15 @@
         {
         }
 
-        public override void HandleKey(char key)
+        public override bool HandleKey(char key)
         {
             switch (key)
             {
                 case 'p':
                     ScreenHandler.ShowScreen(typeof (ProductScreen));
-                    return;
+                    return true;
             }
-
-            base.HandleKey(key);
+            return false;
         }
 
         public override void ScreenOptions()

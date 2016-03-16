@@ -26,7 +26,7 @@
 
             foreach (var product in products)
             {
-                Console.WriteLine($"{product.Name} ({product.AmountAvailable})");
+                Console.WriteLine($"{product.Name} ({product.AmountAvailable} - {product.Weight} kg)");
             }
         }
 
@@ -42,7 +42,7 @@
             Console.WriteLine("S) Store Product");
         }
 
-        public override void HandleKey(char key)
+        public override bool HandleKey(char key)
         {
             switch (key)
             {
@@ -52,10 +52,10 @@
                 case 's':
                     StoreOnShelve();
                     break;
-
                 default:
-                    return;
+                    return false;
             }
+            return true;
         }
 
         private void AddProduct()
@@ -64,7 +64,16 @@
             Console.WriteLine("Type productname to add:");
             var productName = Console.ReadLine();
 
-            var p = new Product {Name = productName};
+            Console.WriteLine("Type weight in kg to add:");
+            var weight = Console.ReadLine();
+            var weightKg = 0m;
+            while (!decimal.TryParse(weight, out weightKg))
+            {
+                Console.WriteLine("Type a decimal please:");
+                weight = Console.ReadLine();
+            }
+
+            var p = new Product {Name = productName, Weight = weightKg};
             Session.SaveOrUpdate(p);
 
             Console.WriteLine($"{productName} saved.");

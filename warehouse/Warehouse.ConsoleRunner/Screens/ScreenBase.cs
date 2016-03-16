@@ -36,14 +36,18 @@
             Console.WriteLine("Q) Quit");
 
             var consoleKeyInfo = Console.ReadKey();
-            HandleKey(consoleKeyInfo.KeyChar);
+            HandleKeyBase(consoleKeyInfo.KeyChar);
         }
 
         public abstract void ScreenOptions();
+        public abstract bool HandleKey(char key);
 
-        public virtual void HandleKey(char key)
+        protected virtual void HandleKeyBase(char key)
         {
-            key = char.ToUpper(key);
+            key = char.ToLower(key);
+
+            if (HandleKey(key))
+                return;
 
             switch (key)
             {
@@ -56,7 +60,7 @@
             }
 
             var consoleKeyInfo = Console.ReadKey();
-            HandleKey(consoleKeyInfo.KeyChar);
+            HandleKeyBase(consoleKeyInfo.KeyChar);
         }
     }
 }

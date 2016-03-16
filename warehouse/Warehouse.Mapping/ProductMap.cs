@@ -8,6 +8,7 @@
         public ProductMap()
         {
             Map(x => x.ProductType).CustomType<ProductType>();
+            Map(x => x.Weight);
             HasMany(x => x.StoredProducts);
         }
     }
