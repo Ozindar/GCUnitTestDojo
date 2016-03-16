@@ -1,6 +1,7 @@
 ﻿namespace Warehouse.ConsoleRunner.Screens
 {
     using System;
+    using FluentNHibernate.Utils;
     using NHibernate;
 
     public abstract class ScreenBase : IScreen
@@ -42,6 +43,8 @@
 
         public virtual void HandleKey(char key)
         {
+            key = char.ToUpper(key);
+
             switch (key)
             {
                 case 'x':
