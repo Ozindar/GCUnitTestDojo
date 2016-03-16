@@ -81,22 +81,9 @@ namespace Warehouse.ConsoleRunner.Screens
                     buildingNumber = Console.ReadLine();
                 }
 
-                ShowDetails(_buildings[index]);
-                
+                ScreenHandler.ShowScreen(typeof (BuildingScreen), _buildings[index]);
             }
             
-            //Console.ReadLine();
-            //Show();
-        }
-
-        private void ShowDetails(Building building)
-        {
-            Console.Clear();
-            Console.WriteLine($"{building.Name} (Airco: {building.Airco.AircoStatus})");
-            Console.WriteLine("----------------------");
-            Console.WriteLine("1) Turn Airco ON");
-            Console.WriteLine("2) Turn Airco OFF");
-            Console.ReadLine();
         }
 
         private void AddBuilding()

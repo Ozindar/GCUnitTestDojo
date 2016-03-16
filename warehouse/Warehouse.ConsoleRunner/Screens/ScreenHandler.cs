@@ -15,13 +15,15 @@
             _sessionFactory = sessionFactory;
         }
 
-        public void ShowScreen(Type type)
+        public void ShowScreen(Type type, params object[] args)
         {
             var screen = _activeScreens.FirstOrDefault(s => s.GetType() == type);
 
             if (screen == null)
             {
-                screen = (IScreen) Activator.CreateInstance(type, _sessionFactory, this);
+                List<object> allArgs = new List<object> {_sessionFactory, this};
+                allArgs.AddRange(args);
+                screen = (IScreen) Activator.CreateInstance(type, allArgs.ToArray());
                 _activeScreens.Add(screen);
             }
 
