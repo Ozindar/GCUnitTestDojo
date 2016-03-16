@@ -28,7 +28,7 @@ namespace Warehouse.ConsoleRunner.Screens
             _buildings = Session.QueryOver<Building>().List();
             if (!_buildings.Any())
             {
-                Console.WriteLine("No products");
+                Console.WriteLine("No buildings");
                 return;
             }
             int index = 0;
