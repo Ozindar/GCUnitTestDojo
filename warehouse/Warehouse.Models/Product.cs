@@ -17,21 +17,21 @@
             get { return StoredProducts.Sum(a => a.Amount); }
         }
 
-        public virtual void StoreProduct(Shelve shelve, int amount)
+        public virtual void StoreProduct(Shelf shelf, int amount)
         {
             if (amount < 1)
                 throw new ArgumentOutOfRangeException(nameof(amount), "amount of products to store needs to be positve");
 
-            var storedProduct = StoredProducts.FirstOrDefault(sp => sp.Shelve == shelve) ?? new StoredProduct(shelve, this);
+            var storedProduct = StoredProducts.FirstOrDefault(sp => sp.Shelf == shelf) ?? new StoredProduct(shelf, this);
             storedProduct.AddProducts(amount);
         }
 
-        public virtual void RemoveProduct(Shelve shelve, int amount)
+        public virtual void RemoveProduct(Shelf shelf, int amount)
         {
             if (amount > 1)
                 throw new ArgumentOutOfRangeException(nameof(amount), "amount of products to remove needs to be positve");
 
-            var storedProduct = StoredProducts.FirstOrDefault(sp => sp.Shelve == shelve) ?? new StoredProduct(shelve, this);
+            var storedProduct = StoredProducts.FirstOrDefault(sp => sp.Shelf == shelf) ?? new StoredProduct(shelf, this);
             storedProduct.RemoveProducts(amount);
         }
 
@@ -41,6 +41,12 @@
             CurrentWeather currentWheather = CurrentWeather.ParseXml(weatherClient.GetWeather("rotterdam", "netherlands"));
 
             var x = currentWheather.TemperatureCelcius();
+        }
+
+        public override string ToString()
+        {
+            return $"{Name} ({AmountAvailable} - {Weight} kg)";
+
         }
     }
 }

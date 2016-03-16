@@ -54,7 +54,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Shelve.cs" />
+    <Compile Include="Shelf.cs" />
     <Compile Include="StoredProduct.cs" />
     <Compile Include="CurrentWeather.cs" />
   </ItemGroup>

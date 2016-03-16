@@ -6,6 +6,7 @@ namespace Warehouse.Mapping
     {
         public RackMap()
         {
+            Map(x => x.MaxWeight);
             References(x => x.Aisle);
             HasMany(x => x.Shelves);
         }

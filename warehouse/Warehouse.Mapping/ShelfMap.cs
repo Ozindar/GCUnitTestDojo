@@ -2,10 +2,11 @@ namespace Warehouse.Mapping
 {
     using Models;
 
-    public class ShelveMap : ModelBaseMap<Shelve>
+    public class ShelfMap : ModelBaseMap<Shelf>
     {
-        public ShelveMap()
+        public ShelfMap()
         {
+            Map(x => x.MaxWeight);
             References(x => x.Rack);
             HasMany(x => x.StoredProducts);
         }

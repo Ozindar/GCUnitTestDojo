@@ -8,7 +8,7 @@ namespace Warehouse.Mapping
         {
             Map(x => x.Amount);
             References(x => x.Product);
-            References(x => x.Shelve);
+            References(x => x.Shelf);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿namespace Warehouse.ConsoleRunner.Screens
 {
     using System;
+    using System.ComponentModel;
     using FluentNHibernate.Utils;
     using NHibernate;
 
@@ -61,6 +62,28 @@
 
             var consoleKeyInfo = Console.ReadKey();
             HandleKeyBase(consoleKeyInfo.KeyChar);
+        }
+
+        protected T Request<T>(string firstQuestion) where T : struct
+        {
+            Console.WriteLine(firstQuestion);
+            var input = Console.ReadLine();
+
+            while (true)
+            {
+                try
+                {
+                    T result = (T) Convert.ChangeType(input, typeof (T));
+                    return result;
+                }
+                catch
+                {
+
+                }
+
+                Console.WriteLine($"Type a {typeof(T).Name} please:");
+                input = Console.ReadLine();
+            }
         }
     }
 }

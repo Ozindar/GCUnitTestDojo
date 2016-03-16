@@ -2,44 +2,44 @@
 {
     using System;
     using System.Collections;
+    using Humanizer;
     using Models;
     using NHibernate;
     using NHibernate.Util;
 
-    public class ProductScreen : ScreenBase
+    public abstract class CrudScreen<T> : ScreenBase where T : ModelBase
     {
-        public ProductScreen(ISessionFactory sessionFactory, ScreenHandler screenHandler) : base(sessionFactory, screenHandler)
+        public CrudScreen(ISessionFactory sessionFactory, ScreenHandler screenHandler) : base(sessionFactory, screenHandler)
         {
         }
 
-        public override string Name => "Products";
+        public override string Name => typeof(T).Name.Pluralize();
 
         public void ShowAll()
         {
-            var products = Session.QueryOver<Product>().List();
+            var items = Session.QueryOver<T>().List();
 
-            if (!products.Any())
+            if (!items.Any())
             {
-                Console.WriteLine("No products");
+                Console.WriteLine($"No {typeof(T).Name.Pluralize()}");
                 return;
             }
 
-            foreach (var product in products)
+            foreach (var item in items)
             {
-                Console.WriteLine($"{product.Name} ({product.AmountAvailable} - {product.Weight} kg)");
+                Console.WriteLine(item.ToString());
             }
         }
 
         public override void ScreenShow()
         {
-            Console.WriteLine("**** Products ****");
+            Console.WriteLine($"**** {typeof(T).Name.Pluralize()} ****");
             ShowAll();
         }
 
         public override void ScreenOptions()
         {
-            Console.WriteLine("A) Add Product");
-            Console.WriteLine("S) Store Product");
+            Console.WriteLine($"A) Add {typeof(T).Name}");
         }
 
         public override bool HandleKey(char key)
@@ -47,10 +47,7 @@
             switch (key)
             {
                 case 'a':
-                    AddProduct();
-                    break;
-                case 's':
-                    StoreOnShelve();
+                    Add();
                     break;
                 default:
                     return false;
@@ -58,27 +55,43 @@
             return true;
         }
 
-        private void AddProduct()
+        protected virtual void Add()
         {
             Console.Clear();
-            Console.WriteLine("Type productname to add:");
-            var productName = Console.ReadLine();
+            Console.WriteLine("Type name:");
+            var name = Console.ReadLine();
 
-            Console.WriteLine("Type weight in kg to add:");
-            var weight = Console.ReadLine();
-            var weightKg = 0m;
-            while (!decimal.TryParse(weight, out weightKg))
-            {
-                Console.WriteLine("Type a decimal please:");
-                weight = Console.ReadLine();
-            }
-
-            var p = new Product {Name = productName, Weight = weightKg};
+            var p = new Product {Name = name};
             Session.SaveOrUpdate(p);
 
-            Console.WriteLine($"{productName} saved.");
+            Console.WriteLine($"{name} saved.");
             Console.ReadLine();
             Show();
+        }
+    }
+
+    public class ProductScreen : CrudScreen<Product>
+    {
+        public ProductScreen(ISessionFactory sessionFactory, ScreenHandler screenHandler) : base(sessionFactory, screenHandler)
+        {
+        }
+
+        public override void ScreenOptions()
+        {
+            base.ScreenOptions();
+            Console.WriteLine("S) Store Product");
+        }
+
+        public override bool HandleKey(char key)
+        {
+            switch (key)
+            {
+                case 's':
+                    StoreOnShelve();
+                    return true;
+                default:
+                    return base.HandleKey(key);
+            }
         }
 
         private void StoreOnShelve()
@@ -87,14 +100,38 @@
             Console.Clear();
             Console.WriteLine("Choose a product");
 
-            var i = 0;
+            var prodChooser = 0;
             foreach (var product in Session.QueryOver<Product>().OrderBy(p => p.Name).Asc.List())
             {
-                prods.Add(++i, product);
-                Console.WriteLine($"{i,3}) {product.Name}");
+                prods.Add(++prodChooser, product);
+                Console.WriteLine($"{prodChooser,3}) {product.Name}");
             }
 
-            var productNumber = Console.ReadLine();
+            var prodChoice = Request<int>("Choose a product:");
+            while (!prods.ContainsKey(prodChoice))
+            {
+                prodChoice = Request<int>("Choose a valid product:");
+            }
+            
+            var amount = Request<decimal>("Choose an amount:");
+            while (amount < 1)
+            {
+                amount = Request<decimal>("Choose a positive amount:");
+            }
+
+            var shelfChooser = 0;
+            foreach (var shelve in Session.QueryOver<Shelf>().OrderBy(p => p.Name).Asc.List())
+            {
+                prods.Add(++shelfChooser, shelve);
+                Console.WriteLine($"{shelfChooser,3}) {shelve.Name}");
+            }
+
+            var shelfChoice = Request<int>("Choose a shelf:");
+            while (!prods.ContainsKey(shelfChoice))
+            {
+                shelfChoice = Request<int>("Choose a valid shelf:");
+            }
+
         }
     }
 }
