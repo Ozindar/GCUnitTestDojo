@@ -15,6 +15,8 @@
             return Fluently.Configure()
                 .Database(SQLiteConfiguration.Standard.UsingFile("Warehouse.db"))
                 .Mappings(m => m.FluentMappings.AddFromAssemblyOf<ProductMap>())
+                .Mappings(m => m.FluentMappings.AddFromAssemblyOf<BuildingMap>())
+                .Mappings(m => m.FluentMappings.AddFromAssemblyOf<AircoMap>())
                 .ExposeConfiguration(UpdateSchema)
                 .BuildSessionFactory();
         }

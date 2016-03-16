@@ -37,10 +37,6 @@
 
         public Product()
         {
-            WeatherService.GlobalWeatherSoap weatherClient = new GlobalWeatherSoapClient("GlobalWeatherSoap");
-            CurrentWeather currentWheather = CurrentWeather.ParseXml(weatherClient.GetWeather("rotterdam", "netherlands"));
-
-            var x = currentWheather.TemperatureCelcius();
         }
 
         public override string ToString()

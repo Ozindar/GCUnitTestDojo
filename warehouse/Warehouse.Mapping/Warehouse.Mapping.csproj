@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AircoMap.cs" />
     <Compile Include="AisleMap.cs" />
     <Compile Include="BuildingMap.cs" />
     <Compile Include="ProductMap.cs" />
