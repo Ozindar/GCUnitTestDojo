@@ -1,4 +1,7 @@
-﻿namespace Warehouse.Models
+﻿using System.Security.Policy;
+using Warehouse.Models.WheatherService;
+
+namespace Warehouse.Models
 {
     using System;
     using System.Collections.Generic;
@@ -31,6 +34,14 @@
 
             var storedProduct = StoredProducts.FirstOrDefault(sp => sp.Shelve == shelve) ?? new StoredProduct(shelve, this);
             storedProduct.RemoveProducts(amount);
+        }
+
+        public Product()
+        {
+            WheatherService.GlobalWeatherSoap weatherClient = new GlobalWeatherSoapClient("GlobalWeatherSoap");
+            CurrentWeather currentWheather = CurrentWeather.ParseXml(weatherClient.GetWeather("rotterdam", "netherlands"));
+
+            var x = currentWheather.TemperatureCelcius();
         }
     }
 }
