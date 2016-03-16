@@ -42,6 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Airco.cs" />
+    <Compile Include="Enums\AircoStatus.cs" />
     <Compile Include="Aisle.cs" />
     <Compile Include="Building.cs" />
     <Compile Include="Enums\ProductType.cs" />

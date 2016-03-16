@@ -7,6 +7,7 @@ namespace Warehouse.Mapping
         public BuildingMap()
         {
             HasMany(x => x.Ailses);
+            HasOne(x => x.Airco);
         }
     }
 }
