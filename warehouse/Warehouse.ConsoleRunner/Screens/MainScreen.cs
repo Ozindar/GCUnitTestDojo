@@ -13,6 +13,9 @@
         {
             switch (key)
             {
+                case 'b':
+                    ScreenHandler.ShowScreen(typeof (BuildingsScreen));
+                    return true;
                 case 'p':
                     ScreenHandler.ShowScreen(typeof (ProductScreen));
                     return true;
@@ -22,6 +25,7 @@
 
         public override void ScreenOptions()
         {
+            Console.WriteLine("B) Buildings");
             Console.WriteLine("P) Products");
         }
 
