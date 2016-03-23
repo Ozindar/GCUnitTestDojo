@@ -11,45 +11,37 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="Warehouse.Models.Building">
-    <Position X="0.5" Y="3.75" Width="1.5" />
+    <Position X="5" Y="5.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAAAAAAIAAAAQAAAAAAAAAAA=</HashCode>
       <FileName>Building.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
       <Property Name="Ailses" />
     </ShowAsCollectionAssociation>
   </Class>
-  <Class Name="Warehouse.Models.ModelBase" Collapsed="true">
-    <Position X="3" Y="2.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAAAAgAAAAAQEAAAABIAAAAAAAAAAAiA=</HashCode>
-      <FileName>Modelbase.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
   <Class Name="Warehouse.Models.Product">
-    <Position X="6.75" Y="2.25" Width="1.5" />
+    <Position X="8" Y="4" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAACAAYAAAAAAAAAAAIAAAAAAAAAAAQAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAACAAYAAAAAAAEAAAIAAAAACAAAAAQAAAAAAAAAAA=</HashCode>
       <FileName>Product.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Warehouse.Models.Rack">
     <Position X="3" Y="5.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAQA=</HashCode>
+      <HashCode>AAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAQA=</HashCode>
       <FileName>Rack.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="Shelves" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="Warehouse.Models.Shelve">
+  <Class Name="Warehouse.Models.Shelf">
     <Position X="5.25" Y="7.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAA=</HashCode>
-      <FileName>Shelve.cs</FileName>
+      <HashCode>AAABACAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAA=</HashCode>
+      <FileName>Shelf.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="Rack" />
@@ -58,23 +50,17 @@
   <Class Name="Warehouse.Models.StoredProduct">
     <Position X="8" Y="7.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAACAAQAAAAAAAAAAAAIgACAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAACAAQAAAAAAAAAAAAIAACAAAAAAAAAAIAAAAAAAAA=</HashCode>
       <FileName>StoredProduct.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="Shelve" />
+      <Property Name="Product" />
+      <Property Name="Shelf" />
     </ShowAsAssociation>
   </Class>
   <Interface Name="System.Collections.Generic.IList&lt;T&gt;" Collapsed="true">
     <Position X="3.25" Y="7.5" Width="1.5" />
     <TypeIdentifier />
   </Interface>
-  <Enum Name="Warehouse.Models.Enums.ProductType" Collapsed="true">
-    <Position X="8.75" Y="2.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAACAAABAAAAAAAAAAAA=</HashCode>
-      <FileName>Enums\ProductType.cs</FileName>
-    </TypeIdentifier>
-  </Enum>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
