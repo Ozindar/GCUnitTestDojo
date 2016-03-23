@@ -1,19 +1,19 @@
 ﻿using System;
 using System.IO;
-using Warehouse.Models.WeatherService;
+using Warehouse.Models.Interfaces;
 
-namespace Warehouse.Models
+namespace Warehouse.Models.WeatherService
 {
-    using Interfaces;
-
-    [SerializableAttribute()]
+    [Serializable()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
     public class CurrentWeather : ICurrentWeather
     {
         private static readonly GlobalWeatherSoap WeatherClient = new GlobalWeatherSoapClient("GlobalWeatherSoap");
-        
+
+        public IGetValueFromString GetTemparatureFromString { get; } = new GetValueFromStringWithBrackets();
+
         public string Location { get; set; }
         public string Time { get; set; }
         public string Wind { get; set; }
@@ -28,20 +28,13 @@ namespace Warehouse.Models
         /// Gets the temperatures in celcius.
         /// Converts a string like '41 F (5 C)' to '5' as a double
         /// </summary>
-        /// <returns>The temparature in Celcius</returns>
+        /// <returns>
+        /// The temparature in Celcius
+        /// </returns>
         /// <exception cref="System.InvalidCastException">When temparature can not be parsed to Celsius</exception>
-        public double GetTemperatureInCelcius()
+        public decimal GetTemperatureInCelcius()
         {
-            double temparature;
-            int firstBracket = Temperature.IndexOf("(", StringComparison.Ordinal) + 1;
-            int secondBracket = Temperature.IndexOf(")", StringComparison.Ordinal) - 2;
-            string temperatureString = Temperature.Substring(firstBracket, secondBracket - firstBracket);
-            if (!double.TryParse(temperatureString, out temparature))
-            {
-                throw new InvalidCastException($"Error in parsing Celcius temperature: {Temperature}");
-            }
-
-            return temparature;
+            return GetTemparatureFromString.GetValueFromString(Temperature);
         }
 
         public static CurrentWeather GetCurrentWeather()

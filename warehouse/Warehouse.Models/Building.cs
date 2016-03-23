@@ -16,7 +16,7 @@ namespace Warehouse.Models
 
         public Building()
         {
-            CurrentWeather = Models.CurrentWeather.GetCurrentWeather();
+            CurrentWeather = WeatherService.CurrentWeather.GetCurrentWeather();
         }
 
         public virtual IList<Aisle> Ailses { get; protected set; } = new List<Aisle>();
@@ -35,7 +35,7 @@ namespace Warehouse.Models
         public virtual void SetAircoStatus(AircoStatus status)
         {
             // Based on current temparature, the Airco can be turned on / off
-            double temperatureInCelsius = CurrentWeather.GetTemperatureInCelcius();
+            decimal temperatureInCelsius = CurrentWeather.GetTemperatureInCelcius();
 
             switch (status)
             {
