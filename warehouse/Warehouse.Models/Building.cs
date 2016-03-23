@@ -1,5 +1,6 @@
 using System;
 using Warehouse.Models.Enums;
+using Warehouse.Models.Exceptions;
 
 namespace Warehouse.Models
 {
@@ -41,15 +42,7 @@ namespace Warehouse.Models
                     throw new ArgumentOutOfRangeException(nameof(status), status, null);
                 }
             }
+            this.Airco.SetAircoStatus(status);
         }
-    }
-
-    public class AircoTemperatureTooHighException : Exception
-    {
-        public AircoTemperatureTooHighException(string message) : base(message) { }
-    }
-    public class AircoTemperatureTooLowException : Exception
-    {
-        public AircoTemperatureTooLowException(string message) : base(message) { }
     }
 }

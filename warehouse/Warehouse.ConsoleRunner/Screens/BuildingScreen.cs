@@ -1,8 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using FluentNHibernate.Utils;
 using NHibernate;
 using Warehouse.Models;
+using Warehouse.Models.Enums;
+using Warehouse.Models.Exceptions;
 
 namespace Warehouse.ConsoleRunner.Screens
 {
@@ -39,24 +40,47 @@ namespace Warehouse.ConsoleRunner.Screens
         public override void ScreenOptions()
         {
             Console.WriteLine("----------------------");
-            Console.WriteLine("1) Turn Airco ON");
-            Console.WriteLine("2) Turn Airco OFF");
+            Console.WriteLine("N) Turn Airco ON");
+            Console.WriteLine("F) Turn Airco OFF");
         }
 
         public override bool HandleKey(char key)
         {
-            switch (key)
+            switch (key.ToLowerInvariantString())
             {
-                case '1':
-                    //AddBuilding();
+                case "n":
+                    SetAircoStatus(AircoStatus.On);
                     break;
-                case '2':
-                    //DetailsOfBuilding();
+                case "f":
+                    SetAircoStatus(AircoStatus.Off);
                     break;
                 default:
                     return false;
             }
             return true;
+        }
+
+        private void SetAircoStatus(AircoStatus aircoStatus)
+        {
+            try
+            {
+                _building.SetAircoStatus(aircoStatus);
+                Session.Update(_building.Airco);
+                Console.Out.WriteLine($"Airco is turned {aircoStatus}");
+            }
+            catch (AircoTemperatureTooHighException)
+            {
+                Console.Out.WriteLine("The outside temparature is too high: don't turn off the airco!");
+            }
+            catch (AircoTemperatureTooLowException)
+            {
+                Console.Out.WriteLine("The outside temparature is too low: no need to turn on the arico.");
+            }
+            finally
+            {
+                Console.ReadLine();
+                Show();
+            }
         }
     }
 }

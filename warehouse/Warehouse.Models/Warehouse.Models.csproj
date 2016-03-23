@@ -43,6 +43,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Airco.cs" />
+    <Compile Include="Exceptions\AircoTemperatureTooHighException.cs" />
+    <Compile Include="Exceptions\AircoTemperatureTooLowException.cs" />
     <Compile Include="Enums\AircoStatus.cs" />
     <Compile Include="Aisle.cs" />
     <Compile Include="Building.cs" />

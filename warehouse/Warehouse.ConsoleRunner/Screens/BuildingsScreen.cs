@@ -70,10 +70,10 @@ namespace Warehouse.ConsoleRunner.Screens
             else
             {
                 Console.Clear();
-                ShowAll();
                 Console.WriteLine("Info of which building?");
+                ShowAll();
                 var buildingNumber = Console.ReadLine();
-                int index = 0;
+                int index;
 
                 while (!int.TryParse(buildingNumber, out index) || index >= _buildings.Count)
                 {
