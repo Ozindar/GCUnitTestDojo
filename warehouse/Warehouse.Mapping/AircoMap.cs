@@ -13,7 +13,7 @@ namespace Warehouse.Mapping
     {
         public AircoMap()
         {
-            Map(x => x.AircoStatus).CustomType<AircoStatus>();
+            Map(x => x.AircoStatus).CustomType<int>();
         }
     }
 }

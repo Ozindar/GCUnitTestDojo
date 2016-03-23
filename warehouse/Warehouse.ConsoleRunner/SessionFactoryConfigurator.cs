@@ -6,6 +6,7 @@
     using Mapping;
     using NHibernate;
     using NHibernate.Cfg;
+    using NHibernate.Context;
     using NHibernate.Tool.hbm2ddl;
 
     public static class SessionFactoryConfigurator
@@ -14,9 +15,8 @@
         {
             return Fluently.Configure()
                 .Database(SQLiteConfiguration.Standard.UsingFile("Warehouse.db"))
+                .CurrentSessionContext<ThreadLocalSessionContext>()
                 .Mappings(m => m.FluentMappings.AddFromAssemblyOf<ProductMap>())
-                .Mappings(m => m.FluentMappings.AddFromAssemblyOf<BuildingMap>())
-                .Mappings(m => m.FluentMappings.AddFromAssemblyOf<AircoMap>())
                 .ExposeConfiguration(UpdateSchema)
                 .BuildSessionFactory();
         }

@@ -65,7 +65,25 @@ namespace Warehouse.ConsoleRunner.Screens
             try
             {
                 _building.SetAircoStatus(aircoStatus);
-                Session.Update(_building.Airco);
+
+                using (var t = Session.BeginTransaction())
+                {
+                    try
+                    {
+
+                    Session.Update(_building.Airco);
+                    t.Commit();
+                    }
+                    catch
+                    {
+                        t.Rollback();
+                    }
+                }
+
+                //OF
+                //Session.Update(_building.Airco);
+                //Session.Flush();
+
                 Console.Out.WriteLine($"Airco is turned {aircoStatus}");
             }
             catch (AircoTemperatureTooHighException)

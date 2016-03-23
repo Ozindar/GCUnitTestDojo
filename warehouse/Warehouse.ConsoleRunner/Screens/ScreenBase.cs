@@ -15,7 +15,7 @@
         {
             SessionFactory = sessionFactory;
             ScreenHandler = screenHandler;
-            Session = sessionFactory.OpenSession();
+            Session = SessionFactory.GetCurrentSession();
         }
 
         public abstract string Name { get; }
