@@ -49,6 +49,7 @@
     <Compile Include="Aisle.cs" />
     <Compile Include="Building.cs" />
     <Compile Include="Enums\ProductType.cs" />
+    <Compile Include="Interfaces\ICurrentWeather.cs" />
     <Compile Include="Modelbase.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

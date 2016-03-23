@@ -9,6 +9,8 @@ using Xunit;
 
 namespace Warehouse.Models.UnitTests
 {
+    using Interfaces;
+
     public class BuildingTests
     {
         [Fact]

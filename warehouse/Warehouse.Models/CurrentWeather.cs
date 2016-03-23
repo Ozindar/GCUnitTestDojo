@@ -4,6 +4,8 @@ using Warehouse.Models.WeatherService;
 
 namespace Warehouse.Models
 {
+    using Interfaces;
+
     [SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]

@@ -5,11 +5,7 @@ using Warehouse.Models.Exceptions;
 namespace Warehouse.Models
 {
     using System.Collections.Generic;
-
-    public interface ICurrentWeather
-    {
-        double GetTemperatureInCelcius();
-    }
+    using Interfaces;
 
     public class Building : ModelBase
     {
