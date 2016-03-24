@@ -1,0 +1,5 @@
+﻿ProcessDate:2014-01-05%TotalItems:5%TotalPrice:160,00%PackageNumber:1%Order:Food.Dogfood%Price:10,50
+ProcessDate:2014-01-05%TotalItems:5%TotalPrice:160,00%PackageNumber:1%Order:Food.Catfood%Price:12,50
+ProcessDate:2014-01-05%TotalItems:5%TotalPrice:160,00%PackageNumber:1%Order:NonFood.Kitchen.Knives%Price:22,00
+ProcessDate:2014-01-05%TotalItems:5%TotalPrice:160,00%PackageNumber:2%Order:Garage.Car.Car tire%Price:100,00
+ProcessDate:2014-01-05%TotalItems:5%TotalPrice:160,00%PackageNumber:2%Order:Garage.Tools.Hammer%Price:15,00
