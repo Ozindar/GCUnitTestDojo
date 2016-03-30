@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Warehouse.Mapping", "Wareho
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Warehouse.ConsoleRunner", "Warehouse.ConsoleRunner\Warehouse.ConsoleRunner.csproj", "{471A2EF9-144A-4EC3-9F89-91D5F4B6D268}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Warehouse.Session", "Warehouse.Session\Warehouse.Session.csproj", "{E73D269E-7043-4AA5-90B1-5D0A885F78AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Warehouse.Screens", "Warehouse.Screens\Warehouse.Screens.csproj", "{CB81AD0F-7B5A-4E38-8332-76D89F79D3F2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{471A2EF9-144A-4EC3-9F89-91D5F4B6D268}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{471A2EF9-144A-4EC3-9F89-91D5F4B6D268}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{471A2EF9-144A-4EC3-9F89-91D5F4B6D268}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E73D269E-7043-4AA5-90B1-5D0A885F78AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E73D269E-7043-4AA5-90B1-5D0A885F78AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E73D269E-7043-4AA5-90B1-5D0A885F78AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E73D269E-7043-4AA5-90B1-5D0A885F78AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB81AD0F-7B5A-4E38-8332-76D89F79D3F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB81AD0F-7B5A-4E38-8332-76D89F79D3F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB81AD0F-7B5A-4E38-8332-76D89F79D3F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB81AD0F-7B5A-4E38-8332-76D89F79D3F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
