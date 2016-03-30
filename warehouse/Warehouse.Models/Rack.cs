@@ -9,5 +9,10 @@
         public virtual Aisle Aisle { get; set; }
 
         public virtual IList<Shelf> Shelves { get; protected set; } = new List<Shelf>();
+
+        public override string ToString()
+        {
+            return $"{Name} - {Aisle?.Name ?? "No Aisle"} - {Aisle?.Building?.Name ?? "No Building"}";
+        }
     }
 }

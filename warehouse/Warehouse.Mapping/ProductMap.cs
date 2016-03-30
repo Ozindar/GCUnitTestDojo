@@ -9,7 +9,7 @@
         {
             Map(x => x.ProductType).CustomType<ProductType>();
             Map(x => x.Weight);
-            HasMany(x => x.StoredProducts);
+            HasMany(x => x.StoredProducts).Cascade.AllDeleteOrphan().Inverse();
         }
     }
 }

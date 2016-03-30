@@ -19,6 +19,11 @@
 
         public virtual string Name { get; set; }
 
+        public override string ToString()
+        {
+            return Name;
+        }
+
         #region Implementation of IEquatable<ModelBase>
         /// <summary>
         ///     Equalses the specified model base.

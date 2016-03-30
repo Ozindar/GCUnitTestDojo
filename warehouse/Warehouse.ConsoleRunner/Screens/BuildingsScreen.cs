@@ -6,52 +6,31 @@ using Warehouse.Models;
 
 namespace Warehouse.ConsoleRunner.Screens
 {
-    public class BuildingsScreen : ScreenBase
+    public class BuildingsScreen : CrudScreen<Building>
     {
         private IList<Building> _buildings;
 
-        public BuildingsScreen(ISessionFactory sessionFactory, ScreenHandler screenHandler) : base(sessionFactory, screenHandler)
+        public BuildingsScreen(ISessionFactory sessionFactory, IScreenHandler screenHandler, IRequestHandler requestHandler, IResponseHandler responseHandler) : base(sessionFactory, screenHandler, requestHandler, responseHandler)
         {
             _buildings = Session.QueryOver<Building>().List();
         }
 
         public override string Name => "Buildings";
 
-        public override void ScreenShow()
+        protected override void ScreenOptions()
         {
-            Console.WriteLine("**** Buildings ****");
-            ShowAll();
+            base.ScreenOptions();
+            ResponseHandler.WriteLine("----------------------");
+            ResponseHandler.WriteLine("D) Details of Building");
         }
 
-        private void ShowAll()
+        protected override bool HandleKey(char key)
         {
-            _buildings = Session.QueryOver<Building>().List();
-            if (!_buildings.Any())
-            {
-                Console.WriteLine("No buildings");
-                return;
-            }
-            int index = 0;
-            foreach (var building in _buildings)
-            {
-                Console.WriteLine($"{index++}) {building.Name} (Airco: {building.Airco.AircoStatus})");
-            }
-        }
+            if (base.HandleKey(key))
+                return true;
 
-        public override void ScreenOptions()
-        {
-            Console.WriteLine("----------------------");
-            Console.WriteLine("A) Add Building");
-            Console.WriteLine("D) Details of Building");
-        }
-
-        public override bool HandleKey(char key)
-        {
             switch (key)
             {
-                case 'a':
-                    AddBuilding();
-                    break;
                 case 'd':
                     DetailsOfBuilding();
                     break;
@@ -65,32 +44,31 @@ namespace Warehouse.ConsoleRunner.Screens
         {
             if (!_buildings.Any())
             {
-                Console.WriteLine("Add some buildings first...");
+                ResponseHandler.WriteLine("Add some buildings first...");
             }
             else
             {
-                Console.Clear();
-                Console.WriteLine("Info of which building?");
-                ShowAll();
-                var buildingNumber = Console.ReadLine();
+                ResponseHandler.Clear();
+                ResponseHandler.WriteLine("Info of which building?");
+                List();
+                var buildingNumber = RequestHandler.ReadLine();
                 int index;
 
                 while (!int.TryParse(buildingNumber, out index) || index >= _buildings.Count)
                 {
-                    Console.WriteLine("Type an integer please that is in range of the list of buildings:");
-                    buildingNumber = Console.ReadLine();
+                    ResponseHandler.WriteLine("Type an integer please that is in range of the list of buildings:");
+                    buildingNumber = RequestHandler.ReadLine();
                 }
 
-                ScreenHandler.ShowScreen(typeof (BuildingScreen), _buildings[index]);
+                ScreenHandler.ShowScreen(typeof (BuildingScreen), true, _buildings[index]);
             }
-            
         }
 
-        private void AddBuilding()
+        protected override void Add()
         {
-            Console.Clear();
-            Console.WriteLine("Type buildingname to add:");
-            var buildingName = Console.ReadLine();
+            ResponseHandler.Clear();
+            ResponseHandler.WriteLine("Type buildingname to add:");
+            var buildingName = RequestHandler.ReadLine();
 
 //            Console.WriteLine("Type weight in kg to add:");
 //            var weight = Console.ReadLine();
@@ -103,9 +81,8 @@ namespace Warehouse.ConsoleRunner.Screens
 
             var building = new Building { Name = buildingName };
             Session.SaveOrUpdate(building);
-
-            Console.WriteLine($"{buildingName} saved.");
-            Console.ReadLine();
+            ResponseHandler.Clear();
+            ResponseHandler.WriteLine($"{buildingName} saved.");
             Show();
         }
     }

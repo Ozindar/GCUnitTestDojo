@@ -35,13 +35,9 @@
             storedProduct.RemoveProducts(amount);
         }
 
-        public Product()
-        {
-        }
-
         public override string ToString()
         {
-            return $"{Name} ({AmountAvailable} - {Weight} kg)";
+            return $"{Name} ({AmountAvailable} x {Weight} = {AmountAvailable* Weight}kg)";
 
         }
     }

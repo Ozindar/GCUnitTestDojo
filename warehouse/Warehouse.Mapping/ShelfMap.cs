@@ -8,7 +8,7 @@ namespace Warehouse.Mapping
         {
             Map(x => x.MaxWeight);
             References(x => x.Rack);
-            HasMany(x => x.StoredProducts);
+            HasMany(x => x.StoredProducts).Cascade.AllDeleteOrphan().Inverse();
         }
     }
 }
