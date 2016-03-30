@@ -49,7 +49,6 @@
     <Compile Include="Aisle.cs" />
     <Compile Include="Building.cs" />
     <Compile Include="Enums\ProductType.cs" />
-    <Compile Include="Interfaces\ICurrentWeather.cs" />
     <Compile Include="Modelbase.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -62,8 +61,6 @@
     <Compile Include="Shelf.cs" />
     <Compile Include="StoredProduct.cs" />
     <Compile Include="WeatherService\CurrentWeather.cs" />
-    <Compile Include="WeatherService\GetValueFromStringWithBrackets.cs" />
-    <Compile Include="WeatherService\IGetValueFromString.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -90,6 +87,9 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Interfaces\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

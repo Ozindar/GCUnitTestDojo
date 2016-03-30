@@ -51,16 +51,18 @@
                 ResponseHandler.Clear();
                 ResponseHandler.WriteLine("Info of which building?");
                 List();
-                var buildingNumber = RequestHandler.ReadLine();
-                int index;
 
-                while (!int.TryParse(buildingNumber, out index) || index >= _buildings.Count)
+                try
                 {
-                    ResponseHandler.WriteLine("Type an integer please that is in range of the list of buildings:");
-                    buildingNumber = RequestHandler.ReadLine();
+                    Building chosenBuilding = RequestHandler.RequestChoice<Building>(ResponseHandler, Session);
+                    ScreenHandler.ShowScreen(typeof(BuildingScreen), true, chosenBuilding);
+                }
+                catch (NoChoiceException)
+                {
+                    ResponseHandler.Clear();
+                    Show();
                 }
 
-                ScreenHandler.ShowScreen(typeof (BuildingScreen), true, _buildings[index]);
             }
         }
 
