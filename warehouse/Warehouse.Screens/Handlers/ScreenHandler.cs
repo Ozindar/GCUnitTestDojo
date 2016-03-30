@@ -1,9 +1,9 @@
-﻿namespace Warehouse.ConsoleRunner.Screens
+﻿namespace Warehouse.Screens.Handlers
 {
+    using NHibernate;
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using NHibernate;
 
     public class ScreenHandler : IScreenHandler
     {

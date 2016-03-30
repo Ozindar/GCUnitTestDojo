@@ -1,10 +1,9 @@
-﻿namespace Warehouse.ConsoleRunner
+namespace Warehouse.Screens.Handlers
 {
     using System;
     using System.Collections;
     using Models;
     using NHibernate;
-    using Screens;
 
     public class RequestHandler : IRequestHandler
     {
@@ -66,18 +65,5 @@
             }
             return items[chosenItem] as T;
         }
-    }
-
-    public class NoChoiceException : Exception
-    {
-    }
-
-    public interface IRequestHandler
-    {
-        char ReadKey();
-        string ReadLine();
-        string RequestString(IResponseHandler responseHandler,string firstQuestion);
-        T RequestStruct<T>(IResponseHandler responseHandler, string firstQuestion) where T : struct;
-        T RequestChoice<T>(IResponseHandler responseHandler, ISession session) where T : ModelBase;
     }
 }

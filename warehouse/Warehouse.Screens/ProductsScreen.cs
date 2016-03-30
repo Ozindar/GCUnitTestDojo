@@ -1,7 +1,7 @@
-﻿namespace Warehouse.ConsoleRunner.Screens
+﻿namespace Warehouse.Screens
 {
-    using System;
     using System.Collections;
+    using Handlers;
     using Models;
     using NHibernate;
 

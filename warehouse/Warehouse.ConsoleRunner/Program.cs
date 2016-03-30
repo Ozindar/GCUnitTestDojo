@@ -1,9 +1,9 @@
 ﻿namespace Warehouse.ConsoleRunner
 {
     using System;
-    using Models;
     using NHibernate;
     using Screens;
+    using Screens.Handlers;
     using Session;
 
     internal class Program

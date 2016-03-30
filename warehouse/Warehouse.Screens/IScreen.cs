@@ -1,4 +1,4 @@
-namespace Warehouse.ConsoleRunner.Screens
+namespace Warehouse.Screens
 {
     public interface IScreen
     {

@@ -1,10 +1,10 @@
-namespace Warehouse.ConsoleRunner.Screens
+namespace Warehouse.Screens
 {
-    using System;
+    using System.Linq;
+    using Handlers;
     using Humanizer;
     using Models;
     using NHibernate;
-    using NHibernate.Util;
 
     public abstract class CrudScreen<T> : ScreenBase where T : ModelBase, new()
     {

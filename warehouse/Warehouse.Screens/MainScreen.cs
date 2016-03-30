@@ -1,6 +1,6 @@
-﻿namespace Warehouse.ConsoleRunner.Screens
+﻿namespace Warehouse.Screens
 {
-    using ConsoleRunner;
+    using Handlers;
     using NHibernate;
 
     public class MainScreen : ScreenBase

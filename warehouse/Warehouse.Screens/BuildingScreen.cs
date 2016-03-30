@@ -1,12 +1,12 @@
-﻿using System;
-using FluentNHibernate.Utils;
-using NHibernate;
-using Warehouse.Models;
-using Warehouse.Models.Enums;
-using Warehouse.Models.Exceptions;
-
-namespace Warehouse.ConsoleRunner.Screens
+﻿namespace Warehouse.Screens
 {
+    using System;
+    using Handlers;
+    using Models;
+    using Models.Enums;
+    using Models.Exceptions;
+    using NHibernate;
+
     public class BuildingScreen : ScreenBase
     {
         private Building _building;
@@ -47,15 +47,15 @@ namespace Warehouse.ConsoleRunner.Screens
 
         protected override bool HandleKey(char key)
         {
-            switch (key.ToLowerInvariantString())
+            switch (char.ToLower(key))
             {
-                case "n":
+                case 'n':
                     SetAircoStatus(AircoStatus.On);
                     break;
-                case "f":
+                case 'f':
                     SetAircoStatus(AircoStatus.Off);
                     break;
-                case "r":
+                case 'r':
                     AddRack();
                     break;
                 default:
