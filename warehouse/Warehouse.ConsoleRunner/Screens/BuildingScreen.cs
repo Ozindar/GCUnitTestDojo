@@ -11,8 +11,8 @@ namespace Warehouse.ConsoleRunner.Screens
     {
         private Building _building;
 
-        public BuildingScreen(ISessionFactory sessionFactory, ScreenHandler screenHandler, Building building)
-            : base(sessionFactory, screenHandler)
+        public BuildingScreen(ISessionFactory sessionFactory, IScreenHandler screenHandler, IRequestHandler requestHandler, IResponseHandler responseHandler,  Building building)
+            : base(sessionFactory, screenHandler, requestHandler, responseHandler)
         {
             if (building == null)
             {
@@ -24,27 +24,28 @@ namespace Warehouse.ConsoleRunner.Screens
 
         public override string Name => "Building info";
 
-        public override void ScreenShow()
+        protected override void ScreenShow()
         {
-            Console.WriteLine("**** Building info ****");
+            ResponseHandler.WriteLine("**** Building info ****");
             ShowDetails();
         }
 
         private void ShowDetails()
         {
-            Console.Clear();
-            Console.WriteLine($"{_building.Name} (Airco: {_building.Airco.AircoStatus})");
+            ResponseHandler.Clear();
+            ResponseHandler.WriteLine($"{_building.Name} (Airco: {_building.Airco.AircoStatus})");
         }
 
 
-        public override void ScreenOptions()
+        protected override void ScreenOptions()
         {
-            Console.WriteLine("----------------------");
-            Console.WriteLine("N) Turn Airco ON");
-            Console.WriteLine("F) Turn Airco OFF");
+            ResponseHandler.WriteLine("----------------------");
+            ResponseHandler.WriteLine("N) Turn Airco ON");
+            ResponseHandler.WriteLine("F) Turn Airco OFF");
+            ResponseHandler.WriteLine("R) Add rack");
         }
 
-        public override bool HandleKey(char key)
+        protected override bool HandleKey(char key)
         {
             switch (key.ToLowerInvariantString())
             {
@@ -54,10 +55,18 @@ namespace Warehouse.ConsoleRunner.Screens
                 case "f":
                     SetAircoStatus(AircoStatus.Off);
                     break;
+                case "r":
+                    AddRack();
+                    break;
                 default:
                     return false;
             }
             return true;
+        }
+
+        private void AddRack()
+        {
+            //RequestHandler
         }
 
         private void SetAircoStatus(AircoStatus aircoStatus)
@@ -84,19 +93,19 @@ namespace Warehouse.ConsoleRunner.Screens
                 //Session.Update(_building.Airco);
                 //Session.Flush();
 
-                Console.Out.WriteLine($"Airco is turned {aircoStatus}");
+                ResponseHandler.WriteLine($"Airco is turned {aircoStatus}");
             }
             catch (AircoTemperatureTooHighException)
             {
-                Console.Out.WriteLine("The outside temparature is too high: don't turn off the airco!");
+                ResponseHandler.WriteLine("The outside temparature is too high: don't turn off the airco!");
             }
             catch (AircoTemperatureTooLowException)
             {
-                Console.Out.WriteLine("The outside temparature is too low: no need to turn on the arico.");
+                ResponseHandler.WriteLine("The outside temparature is too low: no need to turn on the arico.");
             }
             finally
             {
-                Console.ReadLine();
+                RequestHandler.ReadLine();
                 Show();
             }
         }

@@ -1,6 +1,7 @@
 ﻿namespace Warehouse.ConsoleRunner
 {
     using System;
+    using System.IO;
     using FluentNHibernate.Cfg;
     using FluentNHibernate.Cfg.Db;
     using Mapping;
@@ -11,6 +12,7 @@
 
     public static class SessionFactoryConfigurator
     {
+        public static bool Seed = false;
         public static ISessionFactory CreateSessionFactory()
         {
             return Fluently.Configure()
@@ -23,6 +25,8 @@
 
         private static void UpdateSchema(Configuration config)
         {
+            Seed = !File.Exists("Warehouse.db");
+
             var schemaUpdate = new SchemaUpdate(config);
             schemaUpdate.Execute(false, true);
         }

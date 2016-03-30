@@ -64,5 +64,10 @@ namespace Warehouse.Models
             }
             this.Airco.SetAircoStatus(status);
         }
+
+        public override string ToString()
+        {
+            return $"{Name} (Airco: {Airco.AircoStatus})";
+        }
     }
 }

@@ -1,41 +1,52 @@
-﻿using System.Linq;
-using Warehouse.Models;
-
-namespace Warehouse.ConsoleRunner.Screens
+﻿namespace Warehouse.ConsoleRunner.Screens
 {
-    using System;
+    using ConsoleRunner;
     using NHibernate;
 
     public class MainScreen : ScreenBase
     {
-        public MainScreen(ISessionFactory sessionFactory, ScreenHandler screenHandler) : base(sessionFactory, screenHandler)
+        public MainScreen(ISessionFactory sessionFactory, IScreenHandler screenHandler, IRequestHandler requestHandler, IResponseHandler responseHandler)
+            : base(sessionFactory, screenHandler, requestHandler, responseHandler)
         {
         }
 
-        public override bool HandleKey(char key)
+        public override string Name => "Main";
+
+        protected override bool HandleKey(char key)
         {
             switch (key)
             {
                 case 'b':
-                    ScreenHandler.ShowScreen(typeof (BuildingsScreen));
+                    ScreenHandler.ShowScreen(typeof (BuildingsScreen), true);
+                    return true;
+                case 'a':
+                    ScreenHandler.ShowScreen(typeof(AislesScreen), true);
+                    return true;
+                case 'r':
+                    ScreenHandler.ShowScreen(typeof(RacksScreen), true);
+                    return true;
+                case 's':
+                    ScreenHandler.ShowScreen(typeof(ShelvesScreen), true);
                     return true;
                 case 'p':
-                    ScreenHandler.ShowScreen(typeof (ProductScreen));
+                    ScreenHandler.ShowScreen(typeof (ProductsScreen), true);
                     return true;
             }
             return false;
         }
 
-        public override void ScreenOptions()
+        protected override void ScreenOptions()
         {
-            Console.WriteLine("B) Buildings");
-            Console.WriteLine("P) Products");
+            ResponseHandler.WriteLine("P) Products");
+            ResponseHandler.WriteLine("A) Aisles");
+            ResponseHandler.WriteLine("R) Racks");
+            ResponseHandler.WriteLine("S) Shelves");
+            ResponseHandler.WriteLine("B) Buildings");
         }
 
-        public override string Name => "Main";
-        public override void ScreenShow()
+        protected override void ScreenShow()
         {
-            Console.WriteLine("**** MAIN SCREEN ****");
+            ResponseHandler.WriteLine("**** MAIN SCREEN ****");
         }
     }
 }

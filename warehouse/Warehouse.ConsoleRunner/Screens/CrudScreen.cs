@@ -6,48 +6,58 @@ namespace Warehouse.ConsoleRunner.Screens
     using NHibernate;
     using NHibernate.Util;
 
-    public abstract class CrudScreen<T> : ScreenBase where T : ModelBase
+    public abstract class CrudScreen<T> : ScreenBase where T : ModelBase, new()
     {
-        public CrudScreen(ISessionFactory sessionFactory, ScreenHandler screenHandler) : base(sessionFactory, screenHandler)
+        protected CrudScreen(ISessionFactory sessionFactory, IScreenHandler screenHandler, IRequestHandler requestHandler, IResponseHandler responseHandler) : base(sessionFactory, screenHandler, requestHandler, responseHandler)
         {
         }
 
         public override string Name => typeof(T).Name.Pluralize();
 
-        public void ShowAll()
+        protected virtual void List(bool showNumbers = false)
         {
             var items = Session.QueryOver<T>().List();
 
             if (!items.Any())
             {
-                Console.WriteLine($"No {typeof(T).Name.Pluralize()}");
+                ResponseHandler.WriteLine($"No {typeof(T).Name.Pluralize()}");
                 return;
             }
 
+            int i = 0;
             foreach (var item in items)
             {
-                Console.WriteLine(item.ToString());
+                if (showNumbers)
+                    ResponseHandler.Write($"{i++}) ");
+                ResponseHandler.WriteLine(item.ToString());
             }
         }
 
-        public override void ScreenShow()
+        protected override void ScreenShow()
         {
-            Console.WriteLine($"**** {typeof(T).Name.Pluralize()} ****");
-            ShowAll();
+            ResponseHandler.WriteLine($"**** {typeof(T).Name.Pluralize()} ****");
         }
 
-        public override void ScreenOptions()
+        protected override void ScreenOptions()
         {
-            Console.WriteLine($"A) Add {typeof(T).Name}");
+            ResponseHandler.WriteLine($"A) Add {typeof(T).Name}");
+            ResponseHandler.WriteLine($"L) List {typeof(T).Name}");
         }
 
-        public override bool HandleKey(char key)
+        protected override bool HandleKey(char key)
         {
             switch (key)
             {
                 case 'a':
                     Add();
                     break;
+                case 'l':
+                    ResponseHandler.Clear();
+                    List();
+                    ResponseHandler.WriteLine("");
+                    Show();
+                    break;
+
                 default:
                     return false;
             }
@@ -56,16 +66,22 @@ namespace Warehouse.ConsoleRunner.Screens
 
         protected virtual void Add()
         {
-            Console.Clear();
-            Console.WriteLine("Type name:");
-            var name = Console.ReadLine();
+            ResponseHandler.Clear();
+            ResponseHandler.WriteLine("Type name:");
+            var name = RequestHandler.ReadLine();
 
-            var p = new Product {Name = name};
+            var p = new T {Name = name};
+
+            p = ScreenAdd(p);
             Session.SaveOrUpdate(p);
-
-            Console.WriteLine($"{name} saved.");
-            Console.ReadLine();
+            ResponseHandler.Clear();
+            ResponseHandler.WriteLine($"{typeof(T).Name} '{name}' saved.");
             Show();
+        }
+
+        protected virtual T ScreenAdd(T item)
+        {
+            return item;
         }
     }
 }

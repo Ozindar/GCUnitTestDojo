@@ -6,7 +6,7 @@ namespace Warehouse.Mapping
     {
         public BuildingMap()
         {
-            HasMany(x => x.Ailses);
+            HasMany(x => x.Ailses).Cascade.All();
             HasOne(x => x.Airco).Cascade.All();
         }
     }

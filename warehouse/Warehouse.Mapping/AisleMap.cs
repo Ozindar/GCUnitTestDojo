@@ -7,7 +7,7 @@
         public AisleMap()
         {
             References(x => x.Building);
-            HasMany(x => x.Racks);
+            HasMany(x => x.Racks).Cascade.All();
         }
     }
 }

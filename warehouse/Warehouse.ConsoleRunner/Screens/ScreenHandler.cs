@@ -5,27 +5,33 @@
     using System.Linq;
     using NHibernate;
 
-    public class ScreenHandler
+    public class ScreenHandler : IScreenHandler
     {
         private readonly IList<IScreen> _activeScreens = new List<IScreen>();
         private readonly ISessionFactory _sessionFactory;
+        private readonly IRequestHandler _requestHandler;
+        private readonly IResponseHandler _responseHandler;
 
-        public ScreenHandler(ISessionFactory sessionFactory)
+        public ScreenHandler(ISessionFactory sessionFactory, IRequestHandler requestHandler, IResponseHandler responseHandler)
         {
             _sessionFactory = sessionFactory;
+            _requestHandler = requestHandler;
+            _responseHandler = responseHandler;
         }
 
-        public void ShowScreen(Type type, params object[] args)
+        public void ShowScreen(Type type, bool clear, params object[] args)
         {
             var screen = _activeScreens.FirstOrDefault(s => s.GetType() == type);
 
             if (screen == null)
             {
-                List<object> allArgs = new List<object> {_sessionFactory, this};
+                List<object> allArgs = new List<object> {_sessionFactory, this, _requestHandler, _responseHandler };
                 allArgs.AddRange(args);
                 screen = (IScreen) Activator.CreateInstance(type, allArgs.ToArray());
                 _activeScreens.Add(screen);
             }
+            if (clear)
+                _responseHandler.Clear();
 
             screen.Show();
         }
@@ -39,5 +45,11 @@
                 _activeScreens.Remove(screen);
             }
         }
+    }
+
+    public interface IScreenHandler
+    {
+        void ShowScreen(Type type, bool clear, params object[] args);
+        void CloseScreen(Type type);
     }
 }

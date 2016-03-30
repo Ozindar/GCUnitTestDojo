@@ -8,7 +8,7 @@ namespace Warehouse.Mapping
         {
             Map(x => x.MaxWeight);
             References(x => x.Aisle);
-            HasMany(x => x.Shelves);
+            HasMany(x => x.Shelves).Cascade.All();
         }
     }
 }
