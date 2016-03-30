@@ -49,6 +49,7 @@
     <Compile Include="Aisle.cs" />
     <Compile Include="Building.cs" />
     <Compile Include="Enums\ProductType.cs" />
+    <Compile Include="Interfaces\ICurrentWeather.cs" />
     <Compile Include="Modelbase.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -60,7 +61,9 @@
     </Compile>
     <Compile Include="Shelf.cs" />
     <Compile Include="StoredProduct.cs" />
-    <Compile Include="CurrentWeather.cs" />
+    <Compile Include="WeatherService\CurrentWeather.cs" />
+    <Compile Include="WeatherService\GetValueFromStringWithBrackets.cs" />
+    <Compile Include="WeatherService\IGetValueFromString.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

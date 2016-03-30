@@ -1,7 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Warehouse.Models.Aisle">
-    <Position X="0.5" Y="5.75" Width="1.5" />
+    <Position X="0.75" Y="7" Width="1.5" />
+    <AssociationLine Name="Racks" Type="Warehouse.Models.Rack">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.279" Y="0.1" />
+      </MemberNameLabel>
+    </AssociationLine>
     <TypeIdentifier>
       <HashCode>AAAAABAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Aisle.cs</FileName>
@@ -11,9 +16,9 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="Warehouse.Models.Building">
-    <Position X="5" Y="5.25" Width="1.5" />
+    <Position X="0.75" Y="3.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAEAAAAAAAAAAAAAAAAAAIAAAAQAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAAAAAAIAAAAQAAAAAAABAAA=</HashCode>
       <FileName>Building.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -21,7 +26,7 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="Warehouse.Models.Product">
-    <Position X="8" Y="4" Width="1.5" />
+    <Position X="7.5" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAACAAYAAAAAAAEAAAIAAAAACAAAAAQAAAAAAAAAAA=</HashCode>
       <FileName>Product.cs</FileName>
@@ -38,7 +43,12 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="Warehouse.Models.Shelf">
-    <Position X="5.25" Y="7.5" Width="1.5" />
+    <Position X="5.25" Y="7" Width="1.5" />
+    <AssociationLine Name="Rack" Type="Warehouse.Models.Rack">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.671" Y="0.102" />
+      </MemberNameLabel>
+    </AssociationLine>
     <TypeIdentifier>
       <HashCode>AAABACAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAA=</HashCode>
       <FileName>Shelf.cs</FileName>
@@ -48,18 +58,18 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="Warehouse.Models.StoredProduct">
-    <Position X="8" Y="7.5" Width="1.5" />
+    <Position X="7.5" Y="7.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAQAAAAAAAAAAAAIAACAAAAAAAAAAIAAAAAAAAA=</HashCode>
       <FileName>StoredProduct.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="Product" />
       <Property Name="Shelf" />
+      <Property Name="Product" />
     </ShowAsAssociation>
   </Class>
   <Interface Name="System.Collections.Generic.IList&lt;T&gt;" Collapsed="true">
-    <Position X="3.25" Y="7.5" Width="1.5" />
+    <Position X="5.25" Y="5.75" Width="1.5" />
     <TypeIdentifier />
   </Interface>
   <Font Name="Segoe UI" Size="9" />
