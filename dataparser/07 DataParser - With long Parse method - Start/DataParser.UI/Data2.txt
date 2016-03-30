@@ -1,0 +1,4 @@
+﻿ProcessDate:2014-10-12%TotalItems:4%TotalPrice:85,10%PackageNumber:2%Order:Food.Cheese%Price:15,60
+ProcessDate:2014-10-12%TotalItems:4%TotalPrice:85,10%PackageNumber:1%Order:Drinks.Whisky%Price:55,50
+ProcessDate:2014-10-12%TotalItems:4%TotalPrice:85,10%PackageNumber:1%Order:Drinks.Beer%Price:12,00
+ProcessDate:2014-10-12%TotalItems:4%TotalPrice:85,10%PackageNumber:2%Order:Food.Chips%Price:2,00
