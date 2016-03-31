@@ -21,7 +21,7 @@ namespace Warehouse.Models
 
         public virtual IList<Aisle> Ailses { get; protected set; } = new List<Aisle>();
 
-        public ICurrentWeather CurrentWeather;
+        public virtual ICurrentWeather CurrentWeather { get; }
 
         public virtual Airco Airco { get; protected set; } = new Airco();
 
@@ -62,7 +62,7 @@ namespace Warehouse.Models
                     throw new ArgumentOutOfRangeException(nameof(status), status, null);
                 }
             }
-            this.Airco.SetAircoStatus(status);
+            Airco.SetAircoStatus(status);
         }
 
         public override string ToString()

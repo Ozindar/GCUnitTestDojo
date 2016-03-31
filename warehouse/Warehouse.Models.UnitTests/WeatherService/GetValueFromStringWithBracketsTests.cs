@@ -20,7 +20,7 @@ namespace Warehouse.Models.UnitTests.WeatherService
         }
 
         [Fact]
-        public void FUNCTION_GIVEN_SHOULD()
+        public void NogMeerUnitTestenHier()
         {
             // Arrange
             
