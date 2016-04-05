@@ -42,7 +42,6 @@
             ResponseHandler.WriteLine("----------------------");
             ResponseHandler.WriteLine("N) Turn Airco ON");
             ResponseHandler.WriteLine("F) Turn Airco OFF");
-            ResponseHandler.WriteLine("R) Add rack");
         }
 
         protected override bool HandleKey(char key)
@@ -55,18 +54,10 @@
                 case 'f':
                     SetAircoStatus(AircoStatus.Off);
                     break;
-                case 'r':
-                    AddRack();
-                    break;
                 default:
                     return false;
             }
             return true;
-        }
-
-        private void AddRack()
-        {
-            //RequestHandler
         }
 
         private void SetAircoStatus(AircoStatus aircoStatus)
