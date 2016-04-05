@@ -44,11 +44,18 @@ namespace Warehouse.Models.WeatherService
 
         private static CurrentWeather ParseXml(string s)
         {
-            System.Xml.Serialization.XmlSerializer reader = new System.Xml.Serialization.XmlSerializer(typeof (CurrentWeather));
-            TextReader file = new StringReader(s);
-            CurrentWeather currentWeather = (CurrentWeather) reader.Deserialize(file);
-            file.Close();
-            return currentWeather;
-        }
+            try
+            {
+                System.Xml.Serialization.XmlSerializer reader = new System.Xml.Serialization.XmlSerializer(typeof (CurrentWeather));
+                TextReader file = new StringReader(s);
+                CurrentWeather currentWeather = (CurrentWeather) reader.Deserialize(file);
+                file.Close();
+                return currentWeather;
+            }
+            catch (Exception e)
+            {
+                return new CurrentWeather {Temperature = "41 F (5 C)"};
+            }
+		}
     }
 }
