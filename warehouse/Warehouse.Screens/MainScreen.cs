@@ -38,9 +38,9 @@
         protected override void ScreenOptions()
         {
             ResponseHandler.WriteLine("P) Products");
-            ResponseHandler.WriteLine("A) Aisles");
-            ResponseHandler.WriteLine("R) Racks");
             ResponseHandler.WriteLine("S) Shelves");
+            ResponseHandler.WriteLine("R) Racks");
+            ResponseHandler.WriteLine("A) Aisles");
             ResponseHandler.WriteLine("B) Buildings");
         }
 

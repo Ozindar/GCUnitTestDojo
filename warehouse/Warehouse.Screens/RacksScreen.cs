@@ -10,10 +10,13 @@
         {
         }
 
-        protected override Rack ScreenAdd(Rack rack)
+        protected override Rack ScreenAdd(Rack item)
         {
+            var aisle = RequestHandler.RequestChoice<Aisle>(ResponseHandler, Session);
 
-            return rack;
+            item.Aisle = aisle;
+
+            return item;
         }
     }
 }

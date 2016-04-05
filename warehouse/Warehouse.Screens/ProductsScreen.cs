@@ -38,22 +38,9 @@
         {
             try
             {
-                var prods = new Hashtable();
                 ResponseHandler.Clear();
-                ResponseHandler.WriteLine("Choose a product");
 
-                var prodChooser = 0;
-                foreach (var product in Session.QueryOver<Product>().OrderBy(p => p.Name).Asc.List())
-                {
-                    prods.Add(++prodChooser, product);
-                    ResponseHandler.WriteLine($"{prodChooser,3}) {product.Name}");
-                }
-
-                var prodChoice = RequestHandler.RequestStruct<int>(ResponseHandler, "Choose a product:");
-                while (!prods.ContainsKey(prodChoice))
-                {
-                    prodChoice = RequestHandler.RequestStruct<int>(ResponseHandler, "Choose a valid product:");
-                }
+                var chosenProduct = RequestHandler.RequestChoice<Product>(ResponseHandler, Session);
 
                 var amount = RequestHandler.RequestStruct<int>(ResponseHandler, "Choose an amount:");
                 while (amount < 1)
@@ -62,7 +49,6 @@
                 }
 
                 var chosenShelf = RequestHandler.RequestChoice<Shelf>(ResponseHandler, Session);
-                var chosenProduct = RequestHandler.RequestChoice<Product>(ResponseHandler, Session);
 
                 chosenProduct.StoreProduct(chosenShelf, amount);
 
