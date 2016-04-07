@@ -75,5 +75,33 @@ namespace Warehouse.Models.UnitTests
             Assert.ThrowsAny<AircoTemperatureTooHighException>(() => act());
         }
 
+        [Fact]
+        public void SetAircoStatus_InvalidState_ThrowsArgumentOutOfRangeException()
+        {
+            // Arrange
+            CurrentWeatherMock weather = new CurrentWeatherMock {Temperature = 32};
+            Building sut = new Building(weather);
+
+            // Act
+            Action act = () => sut.SetAircoStatus((AircoStatus)Enum.Parse(typeof(AircoStatus),"3"));
+
+            // Assert
+            Assert.ThrowsAny<ArgumentOutOfRangeException>(() => act());
+        }
+
+        [Fact]
+        public void ToString_DefaultBuilding_ValidToString()
+        {
+            // Arrange
+            CurrentWeatherMock weather = new CurrentWeatherMock { Temperature = 32 };
+            Building sut = new Building(weather) {Name = "Test building"};
+
+            // Act
+            string result = sut.ToString();
+
+            // Assert
+            Assert.Equal("Test building (Airco: Off)", result);
+        }
+
     }
 }

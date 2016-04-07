@@ -10,7 +10,7 @@
         {
             // Input array - Expected value
             new object[] {new int[] {}, 0},
-            new object[] {new[] {42}, 42},
+            new object[] {new[] {42}, 41},
             new object[] {new[] {1, 2}, 3},
             new object[] {new[] {43, 33, 5423, 2}, 5501},
             new object[] {new[] {43, 23, 121, 3, 5, 643, -43, 4321, 3}, 5119}
@@ -30,6 +30,8 @@
             Assert.IsType<ArgumentNullException>(ex);
         }
 
+
+
         [Fact]
         public void Add_WithMaxIntPlus1_ThrowsOverflowException()
         {
@@ -45,7 +47,7 @@
         }
 
         [Theory]
-        [MemberData("InputData")]
+        [MemberData(nameof(InputData))]
         public void Add_SomeValidValues_SumOfValues(int[] input, int expected)
         {
             // Arrange
