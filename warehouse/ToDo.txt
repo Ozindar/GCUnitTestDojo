@@ -1,0 +1,50 @@
+Als voorraadbeheerder wil ik aan kunnen geven dat er een maximaal gewicht van producten op een plank (Shelf) kunnen liggen, zodat de planken niet overbelast raken.
+- Ik kan aangeven hoeveel kg een plank aankan
+- ik wil een melding wanneer ik over dit maximale gewicht ga als ik er producten op leg, het product wordt dan niet op de plank geplaatst
+
+
+Als voorraadbeheerder wil ik aan kunnen geven dat er een maximaal gewicht van producten op een rek (Rack) kunnen liggen, zodat de rekken niet overbelast raken.
+- Ik kan aangeven hoeveel kg een rek aankan
+- Ik wil een melding krijgen wanneer ik een rack overbelast, en met hoeveel kg dat dan is.
+
+
+Als voorraadbeheerder wil ik dat op een plank er maar 1 product mag liggen, zodat producten geen effect op elkaar hebben.
+- ik wil een fout melding krijgen wanneer ik een ander product op de plank erbij probeer te leggen. De actie wordt dan niet doorgevoerd.
+- ik wil zien welk product er al ligt wanneer ik deze melding krijg
+- er hoeft geen data schoning gedaan te worden!
+
+
+Als voorraadbeheerder wil ik kunnen aangeven dat er wel 2 non-food producten op een plank mogen liggen, omdat dat ruimte kan besparen in het warehouse.
+- dus elke plank mag dan maximaal 1 food product bevatten
+- en als er al een food product ligt, dan wil ik zien welke dat dan is
+
+
+Als voorraadbeheerder wil ik kunnen aangeven dat wanneer de Airco aan is, er wel meerdere food producten op een plank mogen liggen, omdat het dan koel genoeg is.
+- ik wil wel een waarschuwingsmelding krijgen dat ik meerdere food producten op een plank leg. De actie mag wel worden doorgevoerd.
+- wanneer er meerder food producten op een plank liggen, dan mag de airco niet uit!
+
+
+Als voorraadbeheerder wil ik kunnen aangeven dat een gebouw alleen food, non-food of beide mag bevatten, omdat ik dan een betere scheiding heb in welk gebouw ik zaken opsla.
+- default mag een gebouw food en non-food bevatten
+- wanneer je een gebouw specifiek maakt (food of non-food), dan moet je een melding van krijgen met een lijst van producten die je moet verplaatsen. De actie wordt ook niet uitgevoerd.
+
+
+Als voorraadbeheerder wil ik in gevallen waarbij het systeem weigert producten op de plank te leggen, alternatieve planken zien in het zelfde gebouw.
+- ik zie een lijst met geldige planken (met rek- en gangnummers)
+- het hele aantal moet op 1 andere plank passen (hoeft niet te verspreiden)
+
+
+
+TODO / check: 
+- weather service goed extacten
+- startpunt onze unittesten
+- optie: alleen BLL models
+- Pair programming
+
+
+
+
+
+
+
+
